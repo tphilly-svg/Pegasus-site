@@ -3,644 +3,907 @@
 <head>
   <meta charset="UTF-8" />
   <title>Pegasus Sporting Goods – Newark</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Modern font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --primary: #006437;   /* deep green - Portuguese flag */
-      --accent: #c8102e;    /* rich red - Portuguese flag */
-      --dark: #111827;
-      --light: #f9fafb;
-      --text: #111827;
+      /* Portuguese-inspired sports palette */
+      --green: #008c45;
+      --red: #da291c;
+      --gold: #f2c12e;
+      --deep-blue: #021526;
+      --light: #f5f5f5;
+      --card-bg: rgba(2, 21, 38, 0.92);
+      --accent: #00f2ea;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --transition-fast: 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      --transition-med: 420ms cubic-bezier(0.19, 1, 0.22, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-            background: #f3fbf6;  /* soft light green */
-      line-height: 1.6;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      color: var(--light);
+      background: radial-gradient(circle at 0% 0%, #0b3b2f 0, #021526 40%, #000 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+    /* Subtle animated gradient overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(0, 140, 69, 0.6), transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(218, 41, 28, 0.5), transparent 55%),
+        radial-gradient(circle at 20% 90%, rgba(242, 193, 46, 0.5), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.55;
+      filter: blur(4px);
+      z-index: -2;
+      animation: bg-orbit 32s infinite alternate ease-in-out;
+      pointer-events: none;
+    }
 
-header {
-  color: #fff;
-  padding: 32px 16px 40px;
-  background-image: url("azul 4.jpg");
-  background-size: 180px;
-}
+    @keyframes bg-orbit {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(4%, -3%, 0) scale(1.05);
+      }
+      100% {
+        transform: translate3d(-3%, 4%, 0) scale(1.02);
+      }
+    }
 
+    /* Noise layer for depth */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.22;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-  
-    .container {
-      max-width: 1080px;
+    main {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 18px 16px 80px;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
-      gap: 24px;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: 1.7rem;
-      margin-bottom: 12px;
-      color: var(--dark);
-    }
-
-    p { margin-bottom: 10px; }
-
-    .hero-sub { font-size: 1.05rem; max-width: 34rem; }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(15, 23, 42, 0.35);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-.info-card {
-  background: rgba(15, 23, 42, 0.9);
-  padding: 16px 18px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.4);
-}
-
-.hero-card {
-  background: rgba(15, 23, 42, 0.9);
-  padding: 16px 18px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.4);
-}
-.why-photo {
-  width: 100%;
-  aspect-ratio: 1 / 1;      /* square */
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-}
-
-    .hero-photo {
-  width: 100%;
-  border-radius: 10px;
-  margin: 12px 0;
-  display: block;
-}
-
-    }
-
-    .info-row + .info-row { margin-top: 6px; }
-    .info-label { font-weight: 600; opacity: 0.9; }
-
-    .btn-row {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .btn {
-      padding: 11px 20px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(248, 250, 252, 0.7);
-    }
-
-      main section {
-
-        padding: 56px 0;
-
-        border-bottom: 1px solid #e5e7eb;
-
-        background: #95c1ec;   /* light Portuguese green */;
-      background-image: url(azul3.png);
-        background-size: 160px;
-
-}
-
-    .section-intro {
-      max-width: 40rem;
-      margin-bottom: 18px;
-    }
-
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-      gap: 24px;
-    }
-
-    ul { padding-left: 18px; }
-    li { margin-bottom: 6px; }
-
-    .card-grid-3, .card-grid-4 {
-      display: grid;
-      gap: 16px;
-    }
-
-    .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-
-.card {
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  padding: 16px;
-  background: #ffffff;      
-}
-    .why-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-  gap: 16px;
-  align-items: center;
-}
-
-.why-photo-wrap {
-  width: 100%;
-  max-width: 260px;
-  margin-left: auto;
-}
-
-@media (max-width: 768px) {
-  .why-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .why-photo-wrap {
-    max-width: 100%;
-    margin-left: 0;
-    margin-top: 12px;
-  }
-}
-
-    
-
-
-.slider {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.slider img {
-  width: 100%;
-  display: none;
-}
-
-.slider img.active {
-  display: block;
-}
-
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(17, 24, 39, 0.75);
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.slider-arrow.left {
-  left: 8px;
-}
-
-.slider-arrow.right {
-  right: 8px;
-}
-
-
-
-
-
-    .card h3 {
-      font-size: 1.05rem;
-      margin-bottom: 6px;
-      color: var(--dark);
-    }
-
-    .tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #ffe9e9;
-      color: var(--accent);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .hours-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .hours-list div {
+    header {
       display: flex;
       justify-content: space-between;
-      font-size: 0.9rem;
-      padding: 4px 0;
-      border-bottom: 1px dashed #e5e7eb;
+      align-items: center;
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(135deg, rgba(2, 21, 38, 0.82), rgba(2, 21, 38, 0.52));
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 12px;
+      z-index: 20;
     }
 
-    .map-placeholder {
-      border-radius: 12px;
-      border: 1px dashed #d1d5db;
-      padding: 16px;
-      font-size: 0.9rem;
-      background: #f9fafb;
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    form {
-      display: grid;
-      gap: 10px;
-    }
-
-    label {
-      font-size: 0.8rem;
-      font-weight: 600;
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: #4b5563;
+      font-size: 13px;
+      color: #f8fafc;
+    }
+    .logo span {
+      font-weight: 700;
+    }
+    .logo-badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #e2e8f0;
     }
 
-    input, textarea {
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font: inherit;
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    nav a {
+      position: relative;
+      color: #cbd5f5;
+      text-decoration: none;
+      padding-bottom: 4px;
+      cursor: pointer;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+      border-radius: 999px;
+      transition: width var(--transition-med);
+    }
+
+    nav a:hover::after {
       width: 100%;
     }
 
-    textarea { min-height: 90px; resize: vertical; }
-
-    footer {
-      padding: 16px;
-      font-size: 0.8rem;
-      text-align: center;
-      background: #f3f4f6;
-      color: #6b7280;
+    .pill-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: radial-gradient(circle at 0 0, rgba(0, 242, 234, 0.35), transparent 60%);
+      color: #e5e7eb;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
     }
 
-    @media (max-width: 768px) {
-      .hero-grid,
-      .highlight-grid,
-      .hours-grid,
-      .contact-layout {
-        grid-template-columns: minmax(0, 1fr);
+    .pill-cta::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(
+        from 120deg,
+        rgba(0, 242, 234, 0.4),
+        transparent 40%,
+        rgba(242, 193, 46, 0.4),
+        transparent 80%,
+        rgba(218, 41, 28, 0.4)
+      );
+      opacity: 0;
+      transition: opacity var(--transition-med);
+      mix-blend-mode: screen;
+    }
+
+    .pill-cta span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill-cta:hover::before {
+      opacity: 1;
+      animation: sweep 1.4s linear infinite;
+    }
+
+    @keyframes sweep {
+      to {
+        transform: rotate(360deg);
       }
-      header { padding-top: 24px; }
-      h1 { font-size: 1.9rem; }
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #22c55e 60%, #166534);
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.35);
+    }
+
+    /* Layout */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: center;
+      padding: 32px 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: linear-gradient(
+          135deg,
+          rgba(2, 21, 38, 0.92),
+          rgba(2, 21, 38, 0.86)
+        ),
+        radial-gradient(circle at 0 0, rgba(0, 140, 69, 0.28), transparent 60%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(0, 242, 234, 0.22), transparent 60%),
+        radial-gradient(circle at 110% 110%, rgba(218, 41, 28, 0.25), transparent 60%);
+      mix-blend-mode: soft-light;
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      background: linear-gradient(
+        120deg,
+        rgba(0, 140, 69, 0.18),
+        rgba(242, 193, 46, 0.14),
+        rgba(218, 41, 28, 0.18)
+      );
+    }
+
+    .eyebrow-badge {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #f97316 60%, #b91c1c);
+      box-shadow: 0 0 18px rgba(248, 250, 252, 0.85);
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 3.1vw + 1.4rem, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      color: #f9fafb;
+    }
+
+    h1 span {
+      background: linear-gradient(120deg, var(--gold), var(--red));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #cbd5f5;
+      max-width: 34rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .flag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(15, 23, 42, 0.9));
+    }
+
+    .flag {
+      width: 18px;
+      height: 12px;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .flag-inner {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 2fr 3fr 3fr;
+    }
+
+    .flag-inner div:nth-child(1) { background: #006600; }
+    .flag-inner div:nth-child(2) { background: #ffdf00; }
+    .flag-inner div:nth-child(3) { background: #da291c; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .primary-btn {
+      padding: 11px 18px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #020617;
+      background: linear-gradient(135deg, var(--gold), #ffec99);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .primary-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(248, 250, 252, 0.6), transparent 60%);
+      opacity: 0;
+      transform: translateX(-40%);
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .primary-btn:hover::after {
+      opacity: 1;
+      transform: translateX(60%);
+    }
+
+    .secondary-btn {
+      padding: 11px 16px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: transparent;
+      color: #e5e7eb;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(8px);
+    }
+
+    .secondary-btn:hover {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* Right: image + motion frames */
+    .hero-right {
+      position: relative;
+      perspective: 1400px;
+      min-height: 260px;
+    }
+
+    .photo-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      transform-origin: center;
+      transform-style: preserve-3d;
+      background: radial-gradient(circle at 10% 0%, rgba(0, 242, 234, 0.18), transparent 60%);
+      transition: transform var(--transition-med), box-shadow var(--transition-med);
+      cursor: pointer;
+    }
+
+    .photo-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 360px;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.2), transparent 55%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .photo-tag {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.86);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e5e7eb;
+    }
+
+    .photo-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #22c55e 60%, #14532d);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.45);
+    }
+
+    .photo-facts {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .photo-facts span {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      font-size: 11px;
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .orbit-card {
+      position: absolute;
+      inset: auto;
+      right: -24px;
+      bottom: 95px;
+      width: 168px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      background: rgba(2, 6, 23, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transform: translate3d(0, 0, 80px);
+      animation: float 8s ease-in-out infinite alternate;
+    }
+
+    .orbit-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .orbit-metric {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .orbit-metric strong {
+      font-size: 18px;
+      color: #f9fafb;
+    }
+
+    .orbit-pill-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .orbit-pill {
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 10px;
+      color: #e5e7eb;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate3d(0, 0, 80px);
+      }
+      100% {
+        transform: translate3d(4px, -10px, 80px);
+      }
+    }
+
+    .halo-ring {
+      position: absolute;
+      inset: auto;
+      left: -40px;
+      bottom: -36px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      opacity: 0.45;
+      filter: blur(0.2px);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(0, 242, 234, 0.8), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(242, 193, 46, 0.9), transparent 60%);
+      mix-blend-mode: screen;
+      animation: ring-pulse 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes ring-pulse {
+      0% {
+        transform: scale(0.9) translate3d(0, 0, -40px);
+        opacity: 0.35;
+      }
+      100% {
+        transform: scale(1.07) translate3d(4px, -4px, -40px);
+        opacity: 0.65;
+      }
+    }
+
+    /* Scroll section: gallery */
+    section#gallery {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-card {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--card-bg);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.8);
+      transform-origin: center;
+      transform: translateY(24px) scale(0.97);
+      opacity: 0;
+      transition:
+        opacity 480ms cubic-bezier(0.19, 1, 0.22, 1),
+        transform 480ms cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 260ms ease-out;
+      will-change: transform, opacity;
+    }
+
+    .gallery-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-body {
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .gallery-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .gallery-meta {
+      font-size: 12px;
+      color: #cbd5f5;
+    }
+
+    .gallery-chip-row {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .gallery-chip {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .gallery-card:hover {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px) {
+      header {
+        border-radius: 18px;
+      }
+      nav {
+        display: none;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 22px 16px;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .photo-card img {
+        max-height: 260px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        padding: 18px 12px;
+      }
+      h1 {
+        font-size: 1.95rem;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .orbit-card {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-
-<header>
-  <div class="container hero-grid">
-    <div class="hero-card">
-      <div class="pill">Ironbound • Portuguese Soccer Culture • Since 1981</div>
-      <h1>Pegasus Sporting Goods</h1>
-      <p class="hero-sub">
-        Your go-to spot for jerseys, cleats, and gear - right in the heart of Newark's Portuguese community. Proudly serving fans, players, and families all across New Jersey.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="https://maps.google.com/?q=Pegasus+Sporting+Goods+101+Ferry+St+Newark+NJ" target="_blank" rel="noopener">
-          Get Directions
-        </a>
-        <a class="btn btn-primary" href="tel:19735893510">
-          Call Now
-        </a>
+  <main>
+    <header>
+      <div class="logo">
+        <span>PEGASUS</span>
+        SPORTING GOODS
       </div>
-    </div>
+      <div class="logo-badge">NEWARK · NJ</div>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#gallery">Gear</a>
+        <a href="#footer">Hours</a>
+      </nav>
+      <button class="pill-cta" onclick="document.getElementById('footer').scrollIntoView({behavior:'smooth'});">
+        <span class="pill-dot"></span>
+        <span>Visit in person</span>
+      </button>
+    </header>
 
-    <div class="info-card">
-      <div class="info-row">
-        <div class="info-label">Location</div>
-        <div>101 Ferry St, Newark, NJ 07105</div>
-      </div>
-      <div class="info-row">
-        <div class="info-label">Phone</div>
-        <div>(973) 589-3510</div>
-      </div>
-      <div class="info-row">
-        <div class="info-label">Specialty</div>
-        <div>New Jersey’s premier soccer shop – cleats, jerseys, and equipment</div>
-      </div>
-    </div>
-  </div>
-</header>
+    <section id="hero" class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">
+          <div class="eyebrow-badge"></div>
+          CUSTOM SPORTS SHOP · SINCE 1990
+        </div>
 
+        <h1>
+          Newark’s local hub for
+          <span>Portuguese-inspired</span>
+          sport culture.
+        </h1>
 
-
-
-
-<main>
-  <!-- Highlights -->
-<section>
-  <div class="container">
-    <div class="card why-grid">
-      <div class="why-text">
-        <h2>Why Shop at Pegasus?</h2>
-        <p class="section-intro">
-          Pegasus Sporting Goods is New Jersey’s premier soccer specialty shop, rooted in
-          Ironbound's Portuguese community. Serving players, fans, and families since 1981.
-          We stock the latest cleats, jerseys, and equipment from the brands and clubs you love.
+        <p class="hero-sub">
+          From futsal and football kits to custom team orders, Pegasus is where
+          Ironbound energy and Portuguese passion meet the next match day.
         </p>
-        <ul>
-          <li>Vast selection of soccer cleats for firm ground, turf, and indoor surfaces.</li>
-          <li>Official jerseys and apparel from European clubs, national teams, and more.</li>
-        </ul>
-      </div>
 
-      <div class="why-photo-wrap">
-        <img src="Pegasus-Sporting-Goods front.jpg copy.jpg"
-             alt="Front of Pegasus Sporting Goods in Newark"
-             class="why-photo">
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-  <!-- Products -->
-<section id="products">
-  <div class="container">
-    <div class="card">
-      <h2>What You’ll Find in Store</h2>
-      <p class="section-intro">
-        We carry options for youth and adults, beginners and competitive players.
-      </p>
-      <div class="card-grid-4">
-<div class="card">
-  <div class="slider" data-slider="cleats">
-    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
-    <button class="slider-arrow right" data-dir="next">&#10095;</button>
-
-    <img src="Pegasus-Sporting-Goods cleats 3.jpg" alt="Cleats display at Pegasus" class="active">
-    <img src="Pegasus-Sporting-Goods Cleats.jpg" alt="Cleats display at Pegasus" >
-    <img src="Pegasus-Sporting-Goods cleats 2.jpg" alt="Cleats display at Pegasus">
-  </div>
-
-  <h3>Cleats &amp; Footwear</h3>
-  <p>
-    Youth and adult cleats in ground, turf, and indoor options from brands like Nike,
-    adidas, Puma, and more.
-  </p>
-</div>
-
-
- <div class="card">
-  <div class="slider" data-slider="jerseys">
-    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
-    <button class="slider-arrow right" data-dir="next">&#10095;</button>
-
-    <img src="Jerseys.jpg" alt="Jerseys at Pegasus" class="active">
-    <img src="Jersey 3.jpg" alt="Jerseys at Pegasus">
-  </div>
-
-  <h3>Portuguese &amp; European Jerseys</h3>
-  <p>
-    Show your colors with jerseys from Benfica, Sporting, Porto and other top European
-    clubs, plus national team gear for match day.
-  </p>
-</div>
-
-<div class="card">
-  <div class="slider" data-slider="balls">
-    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
-    <button class="slider-arrow right" data-dir="next">&#10095;</button>
-
-    <img src="inside angle 2.jpg" alt="Equipment at Pegasus" class="active" >
-    <img src="Jerseys 2.jpg" alt="Equipment at Pegasus" >
-    <img src="Inside.jpg" alt="Equipment at Pegasus">
-  </div>
-
-  <h3>Balls &amp; Equipment</h3>
-  <p>
-    Match and training balls, shin guards, goalie gloves, socks, bags, and other
-    essentials for practice and game day.
-  </p>
-</div>
-
-
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Services -->
-<section id="services">
-  <div class="container">
-    <div class="card">
-      <h2>In‑Store Services</h2>
-      <div class="card-grid-3">
-        <div class="card">
-          <h3>Cleat Fitting &amp; Gear Advice</h3>
-          <p>
-            Tell us how and where you play—our staff will help you choose the right cleat type,
-            fit, and gear so you’re comfortable and confident on the field.
-          </p>
+        <div class="hero-meta">
+          <span>• Family-owned · Ironbound</span>
+          <span>• Team uniforms · Bulk orders</span>
+          <span>• Boots · Balls · Accessories</span>
         </div>
-        <div class="card">
-          <h3>Team Uniform &amp; Kit Ordering</h3>
-          <p>
-            We work with teams to design and order uniforms, warm‑ups, and fan gear.
-            Bring your logo or idea and we’ll help you put together a complete kit.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Special Orders</h3>
-          <p>
-            Looking for a specific jersey, size, or product you don’t see on the wall?
-            Ask us—we can often special order items directly from our partners.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-  <!-- Hours & Location -->
-<section id="hours">
-  <div class="container">
-    <div class="card">
-      <div class="hours-grid">
-        <div>
-          <h2>Hours &amp; Location</h2>
-          <p class="section-intro">
-            You’ll find us on Ferry Street in Newark’s Ironbound, minutes from downtown and major
-            highways, with easy access from surrounding towns.
-          </p>
-          <div class="hours-list">
-            <div><span>Monday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Tuesday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Wednesday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Thursday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Friday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Saturday</span><span>9:00 am – 7:00 pm</span></div>
-            <div><span>Sunday</span><span>10:00 am – 5:00 pm</span></div>
+        <div class="hero-actions">
+          <button class="primary-btn" onclick="document.getElementById('footer').scrollIntoView({behavior:'smooth'});">
+            Get directions
+            <span>↗</span>
+          </button>
+          <button class="secondary-btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'});">
+            Browse the window
+          </button>
+          <div class="flag-pill">
+            <div class="flag">
+              <div class="flag-inner">
+                <div></div><div></div><div></div>
+              </div>
+            </div>
+            Portugal-rooted
           </div>
         </div>
-<div class="map-placeholder">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.926996317427!2d-74.1582174235953!3d40.728592137897455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2537f6b9e9c1f%3A0x5ed56e6f3e1e6f34!2s101%20Ferry%20St%2C%20Newark%2C%20NJ%2007105!5e0!3m2!1sen!2sus!4v1708819200000!5m2!1sen!2sus"
-    width="100%"
-    height="260"
-    style="border:0; border-radius:10px;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
       </div>
-    </div>
-  </div>
-</section>
 
+      <div class="hero-right">
+        <div class="photo-card" id="hero-photo">
+          <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Pegasus Sporting Goods storefront" />
+          <div class="photo-overlay"></div>
 
-  <!-- Contact -->
-<section id="contact">
-  <div class="container">
-    <div class="card">
-      <div class="contact-layout">
-        <div>
-          <h2>Contact Pegasus</h2>
-          <p class="section-intro">
-            Have a question about sizes, availability, or team orders?
-            Call us or send a message and our team will get back to you as soon as possible.
-          </p>
-          <p><strong>Phone:</strong> (973) 589-3510</p>
-          <p><strong>Address:</strong> 101 Ferry St, Newark, NJ 07105</p>
+          <div class="photo-tag">
+            <span class="photo-tag-dot"></span>
+            MATCH DAY READY
+          </div>
+
+          <div class="photo-facts">
+            <span>Est. 1990 · Local favorite</span>
+            <span>Newark · NJ · Ironbound</span>
+          </div>
         </div>
-        <div class="card">
-          <form>
-            <div>
-              <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" />
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" />
-            </div>
-            <div>
-              <label for="phone">Phone</label>
-              <input id="phone" type="tel" placeholder="(   )    -" />
-            </div>
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="What are you looking for?"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-          </form>
+
+        <div class="orbit-card">
+          <div class="orbit-label">Weekend flow</div>
+          <div class="orbit-metric">
+            <strong>+62%</strong>
+            <span style="font-size:11px; color:#a5b4fc;">Game days</span>
+          </div>
+          <div class="orbit-pill-row">
+            <div class="orbit-pill">Futsal</div>
+            <div class="orbit-pill">Football</div>
+            <div class="orbit-pill">Academy kits</div>
+          </div>
         </div>
+
+        <div class="halo-ring"></div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-</main>
+    <section id="gallery">
+      <article class="gallery-card">
+        <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Storefront window display" />
+        <div class="gallery-body">
+          <div class="gallery-title">Window display · Match day</div>
+          <div class="gallery-meta">Layered jerseys, boots, and balls, curated like a pre-game tunnel walk.</div>
+          <div class="gallery-chip-row">
+            <span class="gallery-chip">Club colors</span>
+            <span class="gallery-chip">Portuguese flair</span>
+          </div>
+        </div>
+      </article>
 
-<footer>
-  © Pegasus Sporting Goods – Newark, NJ. Website demo created by Tyler Philistin.
-</footer>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sliders = document.querySelectorAll(".slider");
+      <article class="gallery-card">
+        <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Boots and football equipment" />
+        <div class="gallery-body">
+          <div class="gallery-title">Boot wall · Street to stadium</div>
+          <div class="gallery-meta">From futsal flats to firm-ground studs, tuned for Newark courts and pitches.</div>
+          <div class="gallery-chip-row">
+            <span class="gallery-chip">Futsal</span>
+            <span class="gallery-chip">11-a-side</span>
+          </div>
+        </div>
+      </article>
 
-    sliders.forEach(slider => {
-      const images = slider.querySelectorAll("img");
-      let current = 0;
-      if (!images.length) return;
+      <article class="gallery-card">
+        <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Team jerseys and custom kits" />
+        <div class="gallery-body">
+          <div class="gallery-title">Team kits · Custom orders</div>
+          <div class="gallery-meta">Academy, men’s, and women’s sides kitted head-to-toe with a Portuguese heartbeat.</div>
+          <div class="gallery-chip-row">
+            <span class="gallery-chip">Custom names</span>
+            <span class="gallery-chip">Bulk orders</span>
+          </div>
+        </div>
+      </article>
+    </section>
 
-      function show(index) {
-        images[current].classList.remove("active");
-        current = (index + images.length) % images.length;
-        images[current].classList.add("active");
+    <footer id="footer">
+      <div>
+        Pegasus Sporting Goods · Newark, NJ<br />
+        Ironbound neighborhood · Portuguese-owned
+      </div>
+      <div>
+        Mon–Sat: 10:00–20:00 · Sun: 11:00–17:00<br />
+        Visit us in person for current inventory and club deals.
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // 3D tilt on hero photo (Acura-style subtle motion)
+    (function () {
+      const card = document.getElementById("hero-photo");
+      if (!card) return;
+
+      const dampen = 28;
+
+      function handleMove(event) {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+        card.style.transform =
+          "rotateX(" + (-y * dampen) + "deg) rotateY(" + (x * dampen) + "deg) translate3d(0, 0, 0)";
       }
 
-      // ensure first image is active
-      images[0].classList.add("active");
-
-      const leftBtn = slider.querySelector('.slider-arrow.left');
-      const rightBtn = slider.querySelector('.slider-arrow.right');
-
-      if (leftBtn) {
-        leftBtn.addEventListener("click", () => {
-          show(current - 1);
-        });
+      function reset() {
+        card.style.transform = "";
       }
 
-      if (rightBtn) {
-        rightBtn.addEventListener("click", () => {
-          show(current + 1);
-        });
+      card.addEventListener("mousemove", handleMove);
+      card.addEventListener("mouseleave", reset);
+      card.addEventListener("mouseenter", function () {
+        card.style.transition = "transform 160ms ease-out";
+        setTimeout(() => {
+          card.style.transition =
+            "transform 420ms cubic-bezier(0.19, 1, 0.22, 1), box-shadow 420ms cubic-bezier(0.19, 1, 0.22, 1)";
+        }, 160);
+      });
+    })();
+
+    // Scroll reveal for gallery cards
+    (function () {
+      const cards = document.querySelectorAll(".gallery-card");
+      if (!("IntersectionObserver" in window) || !cards.length) {
+        cards.forEach((c) => c.classList.add("visible"));
+        return;
       }
-    });
-  });
-</script>
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16 }
+      );
+
+      cards.forEach((card) => observer.observe(card));
+    })();
+  </script>
 </body>
 </html>
