@@ -153,6 +153,13 @@ body {
     .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 
 .card {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  background: #ffffff;      /* solid white boxes for all cards */
+}
+
+/* Arrow slider styles */
 .slider {
   position: relative;
   overflow: hidden;
@@ -194,7 +201,6 @@ body {
   right: 8px;
 }
 
-}
 
 
 
@@ -362,11 +368,13 @@ body {
       <div class="card-grid-4">
 <div class="card">
   <div class="slider" data-slider="cleats">
-    <img src="Pegasus-Sporting-Goods Cleats.jpg" alt= "Cleats display at Pegasus" class="active">
+    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
+    <button class="slider-arrow right" data-dir="next">&#10095;</button>
+
+    <img src="Pegasus-Sporting-Goods Cleats.jpg" alt="Cleats display at Pegasus" class="active">
     <img src="Pegasus-Sporting-Goods cleats 2.jpg" alt="Cleats display at Pegasus">
     <img src="Pegasus-Sporting-Goods cleats 3.jpg" alt="Cleats display at Pegasus">
   </div>
-  <div class="slider-controls" data-slider-dots="cleats"></div>
 
   <h3>Cleats &amp; Footwear</h3>
   <p>
@@ -375,12 +383,15 @@ body {
   </p>
 </div>
 
-        <div class="card">
+
+ <div class="card">
   <div class="slider" data-slider="jerseys">
+    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
+    <button class="slider-arrow right" data-dir="next">&#10095;</button>
+
     <img src="Jersey 3.jpg" alt="Jerseys at Pegasus" class="active">
     <img src="Jerseys.jpg" alt="Jerseys at Pegasus">
   </div>
-  <div class="slider-controls" data-slider-dots="jerseys"></div>
 
   <h3>Portuguese &amp; European Jerseys</h3>
   <p>
@@ -388,13 +399,16 @@ body {
     clubs, plus national team gear for match day.
   </p>
 </div>
+
 <div class="card">
   <div class="slider" data-slider="balls">
+    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
+    <button class="slider-arrow right" data-dir="next">&#10095;</button>
+
     <img src="inside angle 2.jpg" alt="Equipment at Pegasus" class="active">
-     <img src="Jerseys 2.jpg" alt="Equipment at Pegasus">
+    <img src="Jerseys 2.jpg" alt="Equipment at Pegasus">
     <img src="Inside.jpg" alt="Equipment at Pegasus">
   </div>
-  <div class="slider-controls" data-slider-dots="balls"></div>
 
   <h3>Balls &amp; Equipment</h3>
   <p>
@@ -402,6 +416,7 @@ body {
     essentials for practice and game day.
   </p>
 </div>
+
 
 
       </div>
@@ -531,32 +546,35 @@ body {
     const sliders = document.querySelectorAll(".slider");
 
     sliders.forEach(slider => {
-      const id = slider.getAttribute("data-slider");
       const images = slider.querySelectorAll("img");
-      const dotsContainer = document.querySelector(
-        '.slider-controls[data-slider-dots="' + id + '"]'
-      );
-
-      if (!images.length || !dotsContainer) return;
-
       let current = 0;
+      if (!images.length) return;
 
-      // create dots
-      images.forEach((img, index) => {
-        const dot = document.createElement("div");
-        dot.className = "slider-dot" + (index === 0 ? " active" : "");
-        dot.addEventListener("click", () => {
-          images[current].classList.remove("active");
-          dotsContainer.children[current].classList.remove("active");
-          current = index;
-          images[current].classList.add("active");
-          dotsContainer.children[current].classList.add("active");
+      function show(index) {
+        images[current].classList.remove("active");
+        current = (index + images.length) % images.length;
+        images[current].classList.add("active");
+      }
+
+      // ensure first image is active
+      images[0].classList.add("active");
+
+      const leftBtn = slider.querySelector('.slider-arrow.left');
+      const rightBtn = slider.querySelector('.slider-arrow.right');
+
+      if (leftBtn) {
+        leftBtn.addEventListener("click", () => {
+          show(current - 1);
         });
-        dotsContainer.appendChild(dot);
-      });
+      }
+
+      if (rightBtn) {
+        rightBtn.addEventListener("click", () => {
+          show(current + 1);
+        });
+      }
     });
   });
 </script>
-
 </body>
 </html>
