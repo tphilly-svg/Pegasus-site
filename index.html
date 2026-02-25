@@ -119,14 +119,21 @@ body {
     }
 
 main section {
-      padding: 56px 0;
-      border-bottom: 1px solid #e5e7eb;
-      background: #e4edf8;   /* azulejo-inspired light blue */
-        background-image:
-        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
+  padding: 56px 0;
+  border-bottom: 1px solid #e5e7eb;
+
+  /* Off‑white base */
+  background-color: #f7f3ea;
+
+  /* Azulejo-style navy grid + accents */
+  background-image:
+    linear-gradient(90deg, rgba(6, 40, 89, 0.18) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(6, 40, 89, 0.18) 1px, transparent 1px),
+    radial-gradient(circle at 25% 25%, rgba(6, 80, 150, 0.16) 0, transparent 55%),
+    radial-gradient(circle at 75% 75%, rgba(6, 60, 120, 0.16) 0, transparent 55%);
+  background-size: 46px 46px, 46px 46px, 220px 220px, 220px 220px;
+}
+
 
 
     .section-intro {
