@@ -122,23 +122,11 @@ main section {
   padding: 56px 0;
   border-bottom: 1px solid #e5e7eb;
 
-  /* Bright, light azulejo-style base */
-  background-color: #f9f5ec;  /* light Sail / cream */
-
-  /* Blue grid + lighter tile centers */
-  background-image:
-    /* vertical tile lines */
-    linear-gradient(90deg, rgba(40, 120, 220, 0.20) 1px, transparent 1px),
-    /* horizontal tile lines */
-    linear-gradient(180deg, rgba(40, 120, 220, 0.20) 1px, transparent 1px),
-    /* light blue tile-center motifs */
-    radial-gradient(circle at 25% 25%, rgba(120, 180, 250, 0.26) 0, transparent 55%),
-    radial-gradient(circle at 75% 75%, rgba(120, 180, 250, 0.26) 0, transparent 55%);
-  background-size:
-    42px 42px,   /* grid cell width/height */
-    42px 42px,
-    210px 210px,
-    210px 210px;
+  background-color: #95c1ec;  /* base color behind tiles */
+  background-image: url("azul3.png");
+  background-size: 160px 160px;   /* adjust tile scale */
+  background-repeat: repeat;
+  background-position: center;
 }
 
     .section-intro {
