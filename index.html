@@ -15,11 +15,9 @@
       --dark: #020617;
       --light: #f9fafb;
       --text: #0f172a;
-      --card-bg: rgba(15, 23, 42, 0.96);
-      --card-surface: #ffffff;
       --radius-md: 16px;
-      --radius-lg: 20px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.55);
+      --radius-lg: 22px;
+      --shadow-soft: 0 20px 48px rgba(15, 23, 42, 0.55);
       --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
       --transition-med: 420ms cubic-bezier(0.19, 1, 0.22, 1);
     }
@@ -34,7 +32,6 @@
       overflow-x: hidden;
     }
 
-    /* Soft animated color field behind content */
     body::before {
       content: "";
       position: fixed;
@@ -100,11 +97,11 @@
       transform: scale(1.05);
     }
 
-    .hero-grid {
+    .hero-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
       gap: 24px;
-      align-items: stretch;
+      align-items: center;
     }
 
     h1 {
@@ -127,10 +124,10 @@
       align-items: center;
       gap: 6px;
       background: rgba(15, 23, 42, 0.65);
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
       font-size: 0.8rem;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       border: 1px solid rgba(248, 250, 252, 0.24);
@@ -142,13 +139,13 @@
       perspective: 1200px;
     }
 
-    .card,
     .hero-card,
-    .info-card {
+    .info-card,
+    .card {
       border-radius: var(--radius-lg);
       border: 1px solid rgba(148, 163, 184, 0.35);
       background: rgba(248, 250, 252, 0.98);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(10px);
       position: relative;
       overflow: hidden;
@@ -163,8 +160,9 @@
       transform-style: preserve-3d;
       transform-origin: center;
       opacity: 0;
-      translate: 0 24px;
+      translate: 0 28px;
       scale: 0.98;
+      padding: 24px 24px;   /* more breathing room in all text boxes */
     }
 
     .hero-card {
@@ -175,6 +173,7 @@
     .info-card {
       background: rgba(15, 23, 42, 0.96);
       color: #e5e7eb;
+      padding: 20px 20px;
     }
 
     .card::before,
@@ -223,17 +222,17 @@
       opacity: 0.95;
     }
 
-    .info-row + .info-row { margin-top: 6px; }
+    .info-row + .info-row { margin-top: 8px; }
 
     .btn-row {
-      margin-top: 18px;
+      margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
     .btn {
-      padding: 11px 20px;
+      padding: 11px 22px;
       border-radius: 999px;
       font-size: 0.95rem;
       font-weight: 700;
@@ -257,18 +256,8 @@
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
     }
 
-    .btn-outline {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(248, 250, 252, 0.7);
-    }
-
-    .btn-outline:hover {
-      background: rgba(15, 23, 42, 0.7);
-    }
-
     main section {
-      padding: 56px 0;
+      padding: 64px 0;
       border-bottom: 1px solid rgba(148, 163, 184, 0.4);
       position: relative;
     }
@@ -287,7 +276,7 @@
 
     .section-intro {
       max-width: 40rem;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
       color: #0f172a;
     }
 
@@ -303,11 +292,11 @@
 
     .card-grid-3, .card-grid-4 {
       display: grid;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 
     .card h3 {
       font-size: 1.05rem;
@@ -315,22 +304,10 @@
       color: var(--dark);
     }
 
-    .tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #ffe9e9;
-      color: var(--accent);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
     .why-grid {
       display: grid;
       grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 16px;
+      gap: 18px;
       align-items: center;
     }
 
@@ -340,20 +317,53 @@
       margin-left: auto;
     }
 
-    /* Equal size photos (Why + sliders) */
     .why-photo {
       width: 100%;
       height: 260px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 14px;
       display: block;
+    }
+
+    .hero-photo-box {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-photo-box img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.4), transparent 55%);
+      mix-blend-mode: multiply;
+    }
+
+    .hero-photo-tag {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.7rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
     }
 
     .slider {
       position: relative;
       overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 10px;
+      border-radius: 14px;
+      margin-bottom: 12px;
       background: #0f172a;
     }
 
@@ -396,6 +406,21 @@
     .slider-arrow.left { left: 8px; }
     .slider-arrow.right { right: 8px; }
 
+    /* Hover highlight for product cards when image hovered */
+    .product-card {
+      transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .product-card:hover {
+      background: radial-gradient(circle at 0% 0%, rgba(0, 140, 69, 0.12), rgba(248, 250, 252, 0.98));
+      border-color: rgba(251, 191, 36, 0.9);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.72);
+    }
+
+    .product-card:hover .slider img.active {
+      transform: scale(1.03);
+    }
+
     .hours-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
@@ -433,7 +458,7 @@
 
     form {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     label {
@@ -445,7 +470,7 @@
     }
 
     input, textarea {
-      padding: 8px 10px;
+      padding: 9px 11px;
       border-radius: 8px;
       border: 1px solid #d1d5db;
       font: inherit;
@@ -453,7 +478,7 @@
       background: rgba(248, 250, 252, 0.96);
     }
 
-    textarea { min-height: 90px; resize: vertical; }
+    textarea { min-height: 100px; resize: vertical; }
 
     footer {
       padding: 16px;
@@ -465,7 +490,7 @@
     }
 
     @media (max-width: 768px) {
-      .hero-grid,
+      .hero-layout,
       .highlight-grid,
       .hours-grid,
       .contact-layout {
@@ -478,44 +503,43 @@
         margin-left: 0;
         margin-top: 12px;
       }
+      .hero-photo-box img {
+        height: 230px;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="container hero-grid">
+  <div class="container">
     <div class="tilt-shell">
       <div class="hero-card">
-        <div class="pill">Ironbound • Portuguese Soccer Culture • Since 1981</div>
-        <h1>Pegasus Sporting Goods</h1>
-        <p class="hero-sub">
-          Your go-to spot for jerseys, cleats, and gear - right in the heart of Newark's Portuguese community. Proudly serving fans, players, and families all across New Jersey.
-        </p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="https://maps.google.com/?q=Pegasus+Sporting+Goods+101+Ferry+St+Newark+NJ" target="_blank" rel="noopener">
-            Get Directions
-          </a>
-          <a class="btn btn-primary" href="tel:19735893510">
-            Call Now
-          </a>
-        </div>
-      </div>
-    </div>
+        <div class="hero-layout">
+          <div>
+            <div class="pill">Ironbound • Portuguese Soccer Culture • Since 1981</div>
+            <h1>Pegasus Sporting Goods</h1>
+            <p class="hero-sub">
+              Your go-to spot for jerseys, cleats, and gear - right in the heart of Newark's Portuguese community. Proudly serving fans, players, and families all across New Jersey.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://maps.google.com/?q=Pegasus+Sporting+Goods+101+Ferry+St+Newark+NJ" target="_blank" rel="noopener">
+                Get Directions
+              </a>
+              <a class="btn btn-primary" href="tel:19735893510">
+                Call Now
+              </a>
+            </div>
+            <div style="margin-top:18px; font-size:0.9rem; color:#e5e7eb;">
+              <strong>Address:</strong> 101 Ferry St, Newark, NJ 07105 · <strong>Phone:</strong> (973) 589-3510
+            </div>
+          </div>
 
-    <div class="tilt-shell">
-      <div class="info-card">
-        <div class="info-row">
-          <div class="info-label">Location</div>
-          <div>101 Ferry St, Newark, NJ 07105</div>
-        </div>
-        <div class="info-row">
-          <div class="info-label">Phone</div>
-          <div>(973) 589-3510</div>
-        </div>
-        <div class="info-row">
-          <div class="info-label">Specialty</div>
-          <div>New Jersey’s premier soccer shop – cleats, jerseys, and equipment</div>
+          <div class="hero-photo-box">
+            <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Front of Pegasus Sporting Goods in Newark" />
+            <div class="hero-photo-overlay"></div>
+            <div class="hero-photo-tag">Storefront · Newark, NJ</div>
+          </div>
         </div>
       </div>
     </div>
@@ -527,24 +551,26 @@
   <section>
     <div class="container">
       <div class="tilt-shell">
-        <div class="card why-grid">
-          <div class="why-text">
-            <h2>Why Shop at Pegasus?</h2>
-            <p class="section-intro">
-              Pegasus Sporting Goods is New Jersey’s premier soccer specialty shop, rooted in
-              Ironbound's Portuguese community. Serving players, fans, and families since 1981.
-              We stock the latest cleats, jerseys, and equipment from the brands and clubs you love.
-            </p>
-            <ul>
-              <li>Vast selection of soccer cleats for firm ground, turf, and indoor surfaces.</li>
-              <li>Official jerseys and apparel from European clubs, national teams, and more.</li>
-            </ul>
-          </div>
+        <div class="card">
+          <div class="why-grid">
+            <div class="why-text">
+              <h2>Why Shop at Pegasus?</h2>
+              <p class="section-intro">
+                Pegasus Sporting Goods is New Jersey’s premier soccer specialty shop, rooted in
+                Ironbound's Portuguese community. Serving players, fans, and families since 1981.
+                We stock the latest cleats, jerseys, and equipment from the brands and clubs you love.
+              </p>
+              <ul>
+                <li>Vast selection of soccer cleats for firm ground, turf, and indoor surfaces.</li>
+                <li>Official jerseys and apparel from European clubs, national teams, and more.</li>
+              </ul>
+            </div>
 
-          <div class="why-photo-wrap">
-            <img src="Pegasus-Sporting-Goods front.jpg copy.jpg"
-                 alt="Front of Pegasus Sporting Goods in Newark"
-                 class="why-photo">
+            <div class="why-photo-wrap">
+              <img src="Pegasus-Sporting-Goods front.jpg copy.jpg"
+                   alt="Front of Pegasus Sporting Goods in Newark"
+                   class="why-photo">
+            </div>
           </div>
         </div>
       </div>
@@ -562,8 +588,8 @@
           </p>
           <div class="card-grid-4">
 
-            <div class="tilt-shell">
-              <div class="card">
+            <div class="tilt-shell product-tilt">
+              <div class="card product-card">
                 <div class="slider" data-slider="cleats">
                   <button class="slider-arrow left" data-dir="prev">&#10094;</button>
                   <button class="slider-arrow right" data-dir="next">&#10095;</button>
@@ -581,8 +607,8 @@
               </div>
             </div>
 
-            <div class="tilt-shell">
-              <div class="card">
+            <div class="tilt-shell product-tilt">
+              <div class="card product-card">
                 <div class="slider" data-slider="jerseys">
                   <button class="slider-arrow left" data-dir="prev">&#10094;</button>
                   <button class="slider-arrow right" data-dir="next">&#10095;</button>
@@ -599,8 +625,8 @@
               </div>
             </div>
 
-            <div class="tilt-shell">
-              <div class="card">
+            <div class="tilt-shell product-tilt">
+              <div class="card product-card">
                 <div class="slider" data-slider="balls">
                   <button class="slider-arrow left" data-dir="prev">&#10094;</button>
                   <button class="slider-arrow right" data-dir="next">&#10095;</button>
@@ -754,7 +780,7 @@
 </footer>
 
 <script>
-  // Image sliders (same logic as before)
+  // Image sliders
   document.addEventListener("DOMContentLoaded", function () {
     const sliders = document.querySelectorAll(".slider");
 
@@ -788,7 +814,7 @@
     });
   });
 
-  // 3D tilt for all tilt-shell cards (similar to hero effect you liked)
+  // 3D tilt for all tilt-shell cards
   (function () {
     const shells = document.querySelectorAll(".tilt-shell");
 
@@ -796,7 +822,9 @@
       const card = shell.firstElementChild;
       if (!card) return;
 
-      const dampen = 18;
+      // Stronger for hero, softer for products
+      const isProduct = shell.classList.contains("product-tilt");
+      const dampen = isProduct ? 8 : 16; // smaller number = less wobble
 
       function handleMove(event) {
         const rect = card.getBoundingClientRect();
