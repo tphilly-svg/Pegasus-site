@@ -153,6 +153,41 @@ body {
     .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 
 .card {
+  .slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.slider img {
+  width: 100%;
+  display: none;
+}
+
+.slider img.active {
+  display: block;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+  cursor: pointer;
+}
+
+.slider-dot.active {
+  background: #111827;
+}
+
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   padding: 16px;
@@ -323,27 +358,49 @@ body {
         We carry options for youth and adults, beginners and competitive players.
       </p>
       <div class="card-grid-4">
+<div class="card">
+  <div class="slider" data-slider="cleats">
+    <img src="Pegasus-Sporting-Goods Cleats.jpg" alt= "Cleats display at Pegasus"
+    <img src="Pegasus-Sporting-Goods cleats 2.jpg" alt="Cleats display at Pegasus"
+    <img src="Pegasus-Sporting-Goods cleats 3.jpg" alt="Cleats display at Pegasus" >
+    <!-- add more <img> lines if you have more photos -->
+  </div>
+  <div class="slider-controls" data-slider-dots="cleats"></div>
+
+  <h3>Cleats &amp; Footwear</h3>
+  <p>
+    Youth and adult cleats in firm ground, turf, and indoor options from brands like Nike,
+    adidas, Puma, and more.
+  </p>
+</div>
+
         <div class="card">
-          <h3>Cleats &amp; Footwear</h3>
-          <p>
-            Youth and adult cleats in firm ground, turf, and indoor options from brands like Nike,
-            adidas, Puma, and more.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Portuguese &amp; European Jerseys</h3>
-          <p>
-            Show your colors with jerseys from Benfica, Sporting, Porto and other top European
-            clubs, plus national team gear for match day.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Equipment</h3>
-          <p>
-            Match and training balls, shin guards, goalie gloves, socks, bags, and other
-            essentials for practice and game day.
-          </p>
-        </div>
+  <div class="slider" data-slider="jerseys">
+    <img src="Jersey 3.jpg" alt="Jerseys at Pegasus" class="active">
+    <img src="Jerseys.jpg" alt="Jerseys at Pegasus">
+  </div>
+  <div class="slider-controls" data-slider-dots="jerseys"></div>
+
+  <h3>Portuguese &amp; European Jerseys</h3>
+  <p>
+    Show your colors with jerseys from Benfica, Sporting, Porto and other top European
+    clubs, plus national team gear for match day.
+  </p>
+</div>
+<div class="card">
+  <div class="slider" data-slider="balls">
+    <img src="inside angle 2.jpg" alt="Equipment at Pegasus" class="active">
+    <img src="Inside.jpg" alt="Equipment at Pegasus">
+  </div>
+  <div class="slider-controls" data-slider-dots="balls"></div>
+
+  <h3>Balls &amp; Equipment</h3>
+  <p>
+    Match and training balls, shin guards, goalie gloves, socks, bags, and other
+    essentials for practice and game day.
+  </p>
+</div>
+
         <div class="card">
           <h3>Team &amp; Club Orders</h3>
           <p>
@@ -473,6 +530,37 @@ body {
 <footer>
   © Pegasus Sporting Goods – Newark, NJ. Website demo created by Tyler Philistin.
 </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sliders = document.querySelectorAll(".slider");
+
+    sliders.forEach(slider => {
+      const id = slider.getAttribute("data-slider");
+      const images = slider.querySelectorAll("img");
+      const dotsContainer = document.querySelector(
+        '.slider-controls[data-slider-dots="' + id + '"]'
+      );
+
+      if (!images.length || !dotsContainer) return;
+
+      let current = 0;
+
+      // create dots
+      images.forEach((img, index) => {
+        const dot = document.createElement("div");
+        dot.className = "slider-dot" + (index === 0 ? " active" : "");
+        dot.addEventListener("click", () => {
+          images[current].classList.remove("active");
+          dotsContainer.children[current].classList.remove("active");
+          current = index;
+          images[current].classList.add("active");
+          dotsContainer.children[current].classList.add("active");
+        });
+        dotsContainer.appendChild(dot);
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
