@@ -152,16 +152,15 @@ body {
     .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
     .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 
-    .card {
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      padding: 16px;
-      background: #ffffff;
-    }
+.card {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  background: #ffffff;      /* force solid white for all boxes */
+}
 
-    .card:nth-child(2n) {
-      background: #f5fdf8;   /* light green tint */
-    }
+
+
 
     .card h3 {
       font-size: 1.05rem;
