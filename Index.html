@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pegasus Sporting Goods – Newark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #0b5d8f;
+      --accent: #19a974;
+      --dark: #111827;
+      --light: #f9fafb;
+      --text: #111827;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    header {
+      background: linear-gradient(135deg, #0b5d8f, #043654);
+      color: #fff;
+      padding: 32px 16px 40px;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    p { margin-bottom: 10px; }
+    .hero-sub { font-size: 1.05rem; max-width: 34rem; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.3);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+    .info-card {
+      background: rgba(15, 23, 42, 0.85);
+      padding: 16px 18px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+    .info-row + .info-row { margin-top: 6px; }
+    .info-label { font-weight: 600; opacity: 0.9; }
+    .btn-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(248, 250, 252, 0.6);
+    }
+    main section {
+      padding: 40px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .section-intro {
+      max-width: 40rem;
+      margin-bottom: 18px;
+    }
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 24px;
+    }
+    ul { padding-left: 18px; }
+    li { margin-bottom: 6px; }
+    .card-grid-3, .card-grid-4 {
+      display: grid;
+      gap: 16px;
+    }
+    .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .card {
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+      background: #fff;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e5f3ff;
+      color: #0b5d8f;
+      margin-bottom: 6px;
+    }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .hours-list div {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      padding: 4px 0;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+    .map-placeholder {
+      border-radius: 12px;
+      border: 1px dashed #d1d5db;
+      padding: 16px;
+      font-size: 0.9rem;
+      background: #f9fafb;
+    }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+    form {
+      display: grid;
+      gap: 10px;
+    }
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #4b5563;
+    }
+    input, textarea {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font: inherit;
+      width: 100%;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    footer {
+      padding: 16px;
+      font-size: 0.8rem;
+      text-align: center;
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+    @media (max-width: 768px) {
+      .hero-grid,
+      .highlight-grid,
+      .hours-grid,
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header { padding-top: 24px; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container hero-grid">
+    <div>
+      <div class="pill">Newark • Ironbound • Since 1981</div>
+      <h1>Pegasus Sporting Goods – Newark’s Soccer Shop</h1>
+      <p class="hero-sub">
+        Your local home for cleats, jerseys, and gear in the heart of the Ironbound.
+        Serving players, fans, and families across New Jersey.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://maps.google.com/?q=Pegasus+Sporting+Goods+101+Ferry+St+Newark+NJ" target="_blank" rel="noopener">
+          Get Directions
+        </a>
+        <a class="btn btn-outline" href="tel:19735893510">
+          Call Now
+        </a>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-row">
+        <div class="info-label">Address</div>
+        <div>101 Ferry St, Newark, NJ 07105</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Phone</div>
+        <div>(973) 589-3510</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Specialty</div>
+        <div>Soccer footwear, jerseys, and equipment</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Neighborhood</div>
+        <div>Ironbound, Newark</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Highlights -->
+  <section>
+    <div class="container highlight-grid">
+      <div>
+        <h2>Why Shop at Pegasus?</h2>
+        <p class="section-intro">
+          Pegasus Sporting Goods is New Jersey’s premier soccer specialty shop, serving players,
+          fans, and families since 1981. We stock the latest cleats, jerseys, and equipment from
+          the brands and clubs you love.
+        </p>
+        <ul>
+          <li>Huge selection of soccer cleats for firm ground, turf, and indoor surfaces.</li>
+          <li>Official jerseys and apparel from European clubs, national teams, and more.</li>
+          <li>Local experts who help you find the perfect fit and gear for your level and position.</li>
+          <li>Family-run shop with deep roots in Newark’s soccer community.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">In‑Store Focus</span>
+        <h3>Players, parents & fans</h3>
+        <p>
+          Whether you’re buying your first pair of cleats, gearing up for a new season, or
+          picking up a jersey for match day, our staff is here to help you every step of the way.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products">
+    <div class="container">
+      <h2>What You’ll Find in Store</h2>
+      <p class="section-intro">
+        Visit Pegasus for soccer gear you can see, feel, and try on before you play.
+        We carry options for youth and adults, beginners and competitive players.
+      </p>
+      <div class="card-grid-4">
+        <div class="card">
+          <h3>Cleats &amp; Footwear</h3>
+          <p>
+            Youth and adult cleats in firm ground, turf, and indoor options from brands like Nike,
+            adidas, Puma, and more.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Jerseys &amp; Apparel</h3>
+          <p>
+            Official club and national team jerseys, training tops, jackets, and fan gear,
+            including hard‑to‑find European teams.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Balls &amp; Equipment</h3>
+          <p>
+            Match and training balls, shin guards, goalie gloves, socks, bags, and other
+            essentials for practice and game day.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Team &amp; Club Orders</h3>
+          <p>
+            Custom kits and training gear for clubs, schools, and leagues, with bulk pricing
+            available for larger orders.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2>In‑Store Services</h2>
+      <div class="card-grid-3">
+        <div class="card">
+          <h3>Cleat Fitting &amp; Gear Advice</h3>
+          <p>
+            Tell us how and where you play—our staff will help you choose the right cleat type,
+            fit, and gear so you’re comfortable and confident on the field.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Team Uniform &amp; Kit Ordering</h3>
+          <p>
+            We work with teams to design and order uniforms, warm‑ups, and fan gear.
+            Bring your logo or idea and we’ll help you put together a complete kit.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Special Orders</h3>
+          <p>
+            Looking for a specific jersey, size, or product you don’t see on the wall?
+            Ask us—we can o
