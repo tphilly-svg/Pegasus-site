@@ -153,7 +153,7 @@ body {
     .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 
 .card {
-  .slider {
+.slider {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -169,29 +169,31 @@ body {
   display: block;
 }
 
-.slider-controls {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 4px;
-}
-
-.slider-dot {
-  width: 8px;
-  height: 8px;
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: #d1d5db;
+  border: none;
+  background: rgba(17, 24, 39, 0.75);
+  color: #ffffff;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
 }
 
-.slider-dot.active {
-  background: #111827;
+.slider-arrow.left {
+  left: 8px;
 }
 
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  padding: 16px;
-  background: #ffffff;      /* force solid white for all boxes */
+.slider-arrow.right {
+  right: 8px;
+}
+
 }
 
 
@@ -360,10 +362,9 @@ body {
       <div class="card-grid-4">
 <div class="card">
   <div class="slider" data-slider="cleats">
-    <img src="Pegasus-Sporting-Goods Cleats.jpg" alt= "Cleats display at Pegasus"
-    <img src="Pegasus-Sporting-Goods cleats 2.jpg" alt="Cleats display at Pegasus"
-    <img src="Pegasus-Sporting-Goods cleats 3.jpg" alt="Cleats display at Pegasus" >
-    <!-- add more <img> lines if you have more photos -->
+    <img src="Pegasus-Sporting-Goods Cleats.jpg" alt= "Cleats display at Pegasus" class="active">
+    <img src="Pegasus-Sporting-Goods cleats 2.jpg" alt="Cleats display at Pegasus">
+    <img src="Pegasus-Sporting-Goods cleats 3.jpg" alt="Cleats display at Pegasus">
   </div>
   <div class="slider-controls" data-slider-dots="cleats"></div>
 
@@ -390,6 +391,7 @@ body {
 <div class="card">
   <div class="slider" data-slider="balls">
     <img src="inside angle 2.jpg" alt="Equipment at Pegasus" class="active">
+     <img src="Jerseys 2.jpg" alt="Equipment at Pegasus">
     <img src="Inside.jpg" alt="Equipment at Pegasus">
   </div>
   <div class="slider-controls" data-slider-dots="balls"></div>
@@ -401,13 +403,7 @@ body {
   </p>
 </div>
 
-        <div class="card">
-          <h3>Team &amp; Club Orders</h3>
-          <p>
-            Custom kits and training gear for clubs, schools, and leagues in the Ironbound and
-            beyond, with bulk pricing available for larger orders.
-          </p>
-        </div>
+
       </div>
     </div>
   </div>
