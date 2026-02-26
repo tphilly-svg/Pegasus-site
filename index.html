@@ -268,7 +268,7 @@ header::before {
 
     main section {
       padding: 64px 0;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+      border-bottom: none;
       position: relative;
     }
 
@@ -283,16 +283,17 @@ main section::before {
   pointer-events: none;
   z-index: -1;
 }
-    main section::after {
+main section::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -32px 0;  /* extend 32px above and below each section so gradients overlap */
   background:
-    radial-gradient(ellipse at 20% 30%, rgba(0, 100, 55, 0.55) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 70%, rgba(180, 10, 30, 0.55) 0%, transparent 55%);
+    radial-gradient(ellipse at 20% 30%, rgba(0, 100, 55, 0.72) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(180, 10, 30, 0.72) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }
+
 
 
     main section .container {
