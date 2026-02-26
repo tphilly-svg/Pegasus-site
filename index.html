@@ -6,50 +6,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Modern font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap">
+
 
   <style>
     :root {
       --primary: #006437;   /* deep green - Portuguese flag */
       --accent: #c8102e;    /* rich red - Portuguese flag */
-      --dark: #111827;
+      --dark: #020617;
       --light: #f9fafb;
-      --text: #111827;
+      --text: #0f172a;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --border-base: 1.5px;
+      --border-strong: 2.5px;
+      --shadow-soft: 0 20px 48px rgba(15, 23, 42, 0.55);
+      --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-med: 420ms cubic-bezier(0.19, 1, 0.22, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Jost", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-            background: #f3fbf6;  /* soft light green */
       line-height: 1.6;
+      background: radial-gradient(circle at 0% 0%, #0b3b2f 0, #021526 40%, #000 100%);
+      overflow-x: hidden;
     }
 
-
-a {
-  color: inherit;
-  text-decoration: none;
+    /* Flag-inspired animated background + noise (as in first version) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(0, 140, 69, 0.7), transparent 50%),
+    radial-gradient(circle at 75% 10%, rgba(200, 16, 46, 1), transparent 50%),
+    radial-gradient(circle at 20% 90%, rgba(242, 193, 46, 0.5), transparent 50%);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  filter: blur(4px);
+  z-index: -2;
+  animation: bg-orbit 32s infinite alternate ease-in-out;
+  pointer-events: none;
 }
 
-header {
-  color: #fff;
-  padding: 32px 16px 40px;
-  background-image: url("azul 4.jpg");
-  background-size: 180px;
-}
 
 
-  
+    @keyframes bg-orbit {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(3%, -3%, 0) scale(1.03); }
+      100% { transform: translate3d(-3%, 3%, 0) scale(1.02); }
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.22;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .container {
       max-width: 1080px;
       margin: 0 auto;
       padding: 0 16px;
     }
 
-    .hero-grid {
+    header {
+      color: #fff;
+      padding: 32px 16px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background-image: url("azul 4.jpg");
+  background-size: 200px;
+  background-repeat: repeat;
+  opacity: 0.9;
+  z-index: -2;
+  transform: scale(1.05);
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 30%, rgba(0, 110, 55, 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 100% 70%, rgba(180, 10, 30, 0.55) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+    header .container {
+  position: relative;
+  z-index: 1;
+}
+
+    .hero-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
       gap: 24px;
       align-items: center;
     }
@@ -73,59 +142,117 @@ header {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(15, 23, 42, 0.35);
-      padding: 4px 10px;
+      background: rgba(15, 23, 42, 0.65);
+      padding: 4px 12px;
       border-radius: 999px;
       font-size: 0.8rem;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      border: 1px solid rgba(248, 250, 252, 0.24);
     }
 
-.info-card {
-  background: rgba(15, 23, 42, 0.9);
-  padding: 16px 18px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.4);
-}
-
-.hero-card {
-  background: rgba(15, 23, 42, 0.9);
-  padding: 16px 18px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.4);
-}
-.why-photo {
-  width: 100%;
-  aspect-ratio: 1 / 1;      /* square */
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-}
-
-    .hero-photo {
-  width: 100%;
-  border-radius: 10px;
-  margin: 12px 0;
-  display: block;
-}
-
+    /* 3D card shell */
+    .tilt-shell {
+      position: relative;
+      perspective: 1200px;
     }
 
-    .info-row + .info-row { margin-top: 6px; }
-    .info-label { font-weight: 600; opacity: 0.9; }
+    .hero-card,
+    .info-card,
+    .card {
+      border-radius: var(--radius-lg);
+      border: var(--border-base) solid rgba(148, 163, 184, 0.7);  /* thicker base border */
+      background: rgba(248, 250, 252, 0.98);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-fast),
+        background var(--transition-fast),
+        opacity 480ms cubic-bezier(0.19, 1, 0.22, 1),
+        translate 480ms cubic-bezier(0.19, 1, 0.22, 1),
+        scale 480ms cubic-bezier(0.19, 1, 0.22, 1);
+      transform-style: preserve-3d;
+      transform-origin: center;
+      opacity: 0;
+      translate: 0 28px;
+      scale: 0.98;
+      padding: 26px 26px;   /* more breathing room */
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.93));
+      color: #e5e7eb;
+    }
+
+    .info-card {
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      padding: 20px 20px;
+    }
+
+    .card::before,
+    .hero-card::before,
+    .info-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(0, 140, 69, 0.12), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(200, 16, 46, 0.16), transparent 60%);
+      mix-blend-mode: soft-light;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+      transform: translate3d(0, 0, 40px);
+    }
+
+    .card.visible,
+    .hero-card.visible,
+    .info-card.visible {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+    }
+
+    .card:hover,
+    .hero-card:hover,
+    .info-card:hover {
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.7);
+      border-width: var(--border-strong);  /* thicker on hover but still clean */
+      border-color: rgba(56, 189, 248, 0.85);
+    }
+
+    .card:hover::before,
+    .hero-card:hover::before,
+    .info-card:hover::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 80px);
+    }
+
+    .hero-card h1 { color: #f9fafb; }
+    .hero-card p { color: #e5e7eb; }
+
+    .info-card .info-label {
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .info-row + .info-row { margin-top: 8px; }
 
     .btn-row {
-      margin-top: 18px;
+      margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
     .btn {
-      padding: 11px 20px;
+      padding: 11px 22px;
       border-radius: 999px;
       font-size: 0.95rem;
       font-weight: 700;
@@ -135,40 +262,63 @@ header {
       align-items: center;
       justify-content: center;
       gap: 6px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), #ff4f6a);
       color: #fff;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
     }
 
-    .btn-outline {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(248, 250, 252, 0.7);
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
     }
 
-      main section {
+    main section {
+      padding: 64px 0;
+      border-bottom: none;
+      position: relative;
+    }
 
-        padding: 56px 0;
-
-        border-bottom: 1px solid #e5e7eb;
-
-        background: #95c1ec;   /* light Portuguese green */;
-      background-image: url(azul3.png);
-        background-size: 160px;
-
+main {
+  position: relative;
+  isolation: isolate;
 }
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 30%, rgba(0, 110, 55, 0.68) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 100% 70%, rgba(180, 10, 30, 0.68) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+
+
+
+    main section .container {
+  position: relative;
+  z-index: 2;
+}
+
 
     .section-intro {
       max-width: 40rem;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
+      color: #0f172a;
     }
 
     .highlight-grid {
       display: grid;
       grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
       gap: 24px;
+      align-items: center;
     }
 
     ul { padding-left: 18px; }
@@ -176,89 +326,11 @@ header {
 
     .card-grid-3, .card-grid-4 {
       display: grid;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-
-.card {
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  padding: 16px;
-  background: #ffffff;      
-}
-    .why-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-  gap: 16px;
-  align-items: center;
-}
-
-.why-photo-wrap {
-  width: 100%;
-  max-width: 260px;
-  margin-left: auto;
-}
-
-@media (max-width: 768px) {
-  .why-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .why-photo-wrap {
-    max-width: 100%;
-    margin-left: 0;
-    margin-top: 12px;
-  }
-}
-
-    
-
-
-.slider {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.slider img {
-  width: 100%;
-  display: none;
-}
-
-.slider img.active {
-  display: block;
-}
-
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(17, 24, 39, 0.75);
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.slider-arrow.left {
-  left: 8px;
-}
-
-.slider-arrow.right {
-  right: 8px;
-}
-
-
-
-
+    .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 
     .card h3 {
       font-size: 1.05rem;
@@ -266,16 +338,193 @@ header {
       color: var(--dark);
     }
 
-    .tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 2px 8px;
+    /* Hero photo recrop + bubble tag */
+    .hero-photo-box {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-photo-box img {
+      width: 100%;
+      height: 320px;          /* taller crop so sign is visible */
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.45), transparent 55%);
+      mix-blend-mode: multiply;
+    }
+
+    .hero-photo-tag {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      padding: 6px 11px;
       border-radius: 999px;
-      background: #ffe9e9;
-      color: var(--accent);
-      margin-bottom: 6px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.85);
+      font-size: 0.7rem;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+    }
+
+    /* Why section: replace photo with simple animated sporting-goods graphic */
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .why-graphic-wrap {
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+    }
+
+    .why-graphic {
+      position: relative;
+      border-radius: 18px;
+      padding: 22px;
+      background: radial-gradient(circle at 0% 0%, rgba(0, 140, 69, 0.35), rgba(15, 23, 42, 0.95));
+      overflow: hidden;
+    }
+
+    .field-line {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      top: 50%;
+      height: 2px;
+      background: rgba(248, 250, 252, 0.18);
+    }
+
+.ball {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff, #e5e7eb 55%, #cbd5e1),
+    radial-gradient(circle at 70% 70%, #111827 0, #111827 30%, transparent 31%);
+  border: 1px solid #0f172a;
+  box-shadow: 0 0 10px rgba(15, 23, 42, 0.55);
+  animation: ball-drift 6s ease-in-out infinite alternate;
+}
+
+
+    .ball:nth-child(2) { top: 26%; left: 18%; }
+    .ball:nth-child(3) { top: 38%; right: 14%; animation-delay: -2s; }
+    .ball:nth-child(4) { bottom: 18%; left: 42%; animation-delay: -4s; }
+
+    @keyframes ball-drift {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(6px, -10px, 0); }
+    }
+
+.why-graphic-text {
+  position: relative;
+  color: #0f172a;   /* black-ish for contrast */
+  font-size: 0.85rem;
+  line-height: 1.5;
+  background: rgba(248, 250, 252, 0.9);
+  padding: 8px 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.why-graphic-text strong {
+  font-size: 0.95rem;
+}
+
+
+    .slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: #0f172a;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: none;
+      transition: opacity var(--transition-med), transform var(--transition-med);
+    }
+
+    .slider img.active {
+      display: block;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(17, 24, 39, 0.9);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+      opacity: 1; /* keep visible even on hover */
+      z-index: 2;
+    }
+
+    .slider-arrow:hover {
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.7);
+    }
+
+    .slider-arrow.left { left: 8px; }
+    .slider-arrow.right { right: 8px; }
+
+    /* Product card hover: stronger green tint + thicker border in harmony */
+    .product-card {
+      transition: background var(--transition-fast), border-color var(--transition-fast), border-width var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+      position: relative;
+    }
+
+    .product-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 0% 0%, rgba(0, 140, 69, 0.45), transparent 60%);
+      mix-blend-mode: soft-light;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity var(--transition-fast);
+    }
+
+    .product-card:hover {
+      background: radial-gradient(circle at 0% 0%, rgba(0, 140, 69, 0.2), rgba(248, 250, 252, 0.98));
+      border-width: 3px;
+      border-color: rgba(56, 189, 248, 0.95); /* bright blue to complement green */
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .product-card:hover::after {
+      opacity: 1; /* deeper green tint */
+    }
+
+    .product-card:hover .slider img.active {
+      transform: scale(1.03);
     }
 
     .hours-grid {
@@ -294,11 +543,16 @@ header {
     }
 
     .map-placeholder {
+      border-radius: var(--radius-md);
+      border: 1.5px solid rgba(148, 163, 184, 0.6);
+      padding: 6px;
+      background: #0f172a;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.4);
+    }
+
+    .map-placeholder iframe {
       border-radius: 12px;
-      border: 1px dashed #d1d5db;
-      padding: 16px;
-      font-size: 0.9rem;
-      background: #f9fafb;
+      display: block;
     }
 
     .contact-layout {
@@ -310,7 +564,7 @@ header {
 
     form {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     label {
@@ -322,25 +576,27 @@ header {
     }
 
     input, textarea {
-      padding: 8px 10px;
+      padding: 9px 11px;
       border-radius: 8px;
       border: 1px solid #d1d5db;
       font: inherit;
       width: 100%;
+      background: rgba(248, 250, 252, 0.96);
     }
 
-    textarea { min-height: 90px; resize: vertical; }
+    textarea { min-height: 100px; resize: vertical; }
 
     footer {
       padding: 16px;
       font-size: 0.8rem;
       text-align: center;
-      background: #f3f4f6;
-      color: #6b7280;
+      background: rgba(15, 23, 42, 0.96);
+      color: #9ca3af;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
     }
 
     @media (max-width: 768px) {
-      .hero-grid,
+      .hero-layout,
       .highlight-grid,
       .hours-grid,
       .contact-layout {
@@ -348,266 +604,292 @@ header {
       }
       header { padding-top: 24px; }
       h1 { font-size: 1.9rem; }
+      .hero-photo-box img {
+        height: 260px;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="container hero-grid">
-    <div class="hero-card">
-      <div class="pill">Ironbound • Portuguese Soccer Culture • Since 1981</div>
-      <h1>Pegasus Sporting Goods</h1>
-      <p class="hero-sub">
-        Your go-to spot for jerseys, cleats, and gear - right in the heart of Newark's Portuguese community. Proudly serving fans, players, and families all across New Jersey.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="https://maps.google.com/?q=Pegasus+Sporting+Goods+101+Ferry+St+Newark+NJ" target="_blank" rel="noopener">
-          Get Directions
-        </a>
-        <a class="btn btn-primary" href="tel:19735893510">
-          Call Now
-        </a>
-      </div>
-    </div>
+  <div class="container">
+    <div class="tilt-shell">
+      <div class="hero-card">
+        <div class="hero-layout">
+          <div>
+            <div class="pill">Ironbound • Portuguese Soccer Culture • Since 1981</div>
+            <h1>Pegasus Sporting Goods</h1>
+            <p class="hero-sub">
+              Your go-to spot for jerseys, cleats, and gear - right in the heart of Newark's Portuguese community. Proudly serving fans, players, and families all across New Jersey.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://maps.google.com/?q=Pegasus+Sporting+Goods+101+Ferry+St+Newark+NJ" target="_blank" rel="noopener">
+                Get Directions
+              </a>
+              <a class="btn btn-primary" href="tel:19735893510">
+                Call Now
+              </a>
+            </div>
+            <div style="margin-top:18px; font-size:0.9rem; color:#e5e7eb;">
+              <strong>Address:</strong> 101 Ferry St, Newark, NJ 07105 · <strong>Phone:</strong> (973) 589-3510
+            </div>
+          </div>
 
-    <div class="info-card">
-      <div class="info-row">
-        <div class="info-label">Location</div>
-        <div>101 Ferry St, Newark, NJ 07105</div>
-      </div>
-      <div class="info-row">
-        <div class="info-label">Phone</div>
-        <div>(973) 589-3510</div>
-      </div>
-      <div class="info-row">
-        <div class="info-label">Specialty</div>
-        <div>New Jersey’s premier soccer shop – cleats, jerseys, and equipment</div>
+<div class="hero-photo-box">
+  <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Front of Pegasus Sporting Goods in Newark" />
+  <div class="hero-photo-overlay"></div>
+</div>
+
+        </div>
       </div>
     </div>
   </div>
 </header>
 
-
-
-
-
 <main>
   <!-- Highlights -->
-<section>
-  <div class="container">
-    <div class="card why-grid">
-      <div class="why-text">
-        <h2>Why Shop at Pegasus?</h2>
-        <p class="section-intro">
-          Pegasus Sporting Goods is New Jersey’s premier soccer specialty shop, rooted in
-          Ironbound's Portuguese community. Serving players, fans, and families since 1981.
-          We stock the latest cleats, jerseys, and equipment from the brands and clubs you love.
-        </p>
-        <ul>
-          <li>Vast selection of soccer cleats for firm ground, turf, and indoor surfaces.</li>
-          <li>Official jerseys and apparel from European clubs, national teams, and more.</li>
-        </ul>
-      </div>
-
-      <div class="why-photo-wrap">
-        <img src="Pegasus-Sporting-Goods front.jpg copy.jpg"
-             alt="Front of Pegasus Sporting Goods in Newark"
-             class="why-photo">
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-  <!-- Products -->
-<section id="products">
-  <div class="container">
-    <div class="card">
-      <h2>What You’ll Find in Store</h2>
-      <p class="section-intro">
-        We carry options for youth and adults, beginners and competitive players.
-      </p>
-      <div class="card-grid-4">
-<div class="card">
-  <div class="slider" data-slider="cleats">
-    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
-    <button class="slider-arrow right" data-dir="next">&#10095;</button>
-
-    <img src="Pegasus-Sporting-Goods cleats 3.jpg" alt="Cleats display at Pegasus" class="active">
-    <img src="Pegasus-Sporting-Goods Cleats.jpg" alt="Cleats display at Pegasus" >
-    <img src="Pegasus-Sporting-Goods cleats 2.jpg" alt="Cleats display at Pegasus">
-  </div>
-
-  <h3>Cleats &amp; Footwear</h3>
-  <p>
-    Youth and adult cleats in ground, turf, and indoor options from brands like Nike,
-    adidas, Puma, and more.
-  </p>
-</div>
-
-
- <div class="card">
-  <div class="slider" data-slider="jerseys">
-    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
-    <button class="slider-arrow right" data-dir="next">&#10095;</button>
-
-    <img src="Jerseys.jpg" alt="Jerseys at Pegasus" class="active">
-    <img src="Jersey 3.jpg" alt="Jerseys at Pegasus">
-  </div>
-
-  <h3>Portuguese &amp; European Jerseys</h3>
-  <p>
-    Show your colors with jerseys from Benfica, Sporting, Porto and other top European
-    clubs, plus national team gear for match day.
-  </p>
-</div>
-
-<div class="card">
-  <div class="slider" data-slider="balls">
-    <button class="slider-arrow left" data-dir="prev">&#10094;</button>
-    <button class="slider-arrow right" data-dir="next">&#10095;</button>
-
-    <img src="inside angle 2.jpg" alt="Equipment at Pegasus" class="active" >
-    <img src="Jerseys 2.jpg" alt="Equipment at Pegasus" >
-    <img src="Inside.jpg" alt="Equipment at Pegasus">
-  </div>
-
-  <h3>Balls &amp; Equipment</h3>
-  <p>
-    Match and training balls, shin guards, goalie gloves, socks, bags, and other
-    essentials for practice and game day.
-  </p>
-</div>
-
-
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Services -->
-<section id="services">
-  <div class="container">
-    <div class="card">
-      <h2>In‑Store Services</h2>
-      <div class="card-grid-3">
+  <section>
+    <div class="container">
+      <div class="tilt-shell">
         <div class="card">
-          <h3>Cleat Fitting &amp; Gear Advice</h3>
-          <p>
-            Tell us how and where you play—our staff will help you choose the right cleat type,
-            fit, and gear so you’re comfortable and confident on the field.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Team Uniform &amp; Kit Ordering</h3>
-          <p>
-            We work with teams to design and order uniforms, warm‑ups, and fan gear.
-            Bring your logo or idea and we’ll help you put together a complete kit.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Special Orders</h3>
-          <p>
-            Looking for a specific jersey, size, or product you don’t see on the wall?
-            Ask us—we can often special order items directly from our partners.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+          <div class="highlight-grid">
+            <div class="why-text">
+              <h2>Why Shop at Pegasus?</h2>
+              <p class="section-intro">
+                Pegasus Sporting Goods is New Jersey’s premier soccer specialty shop, rooted in
+                Ironbound's Portuguese community. Serving players, fans, and families since 1981.
+                We stock the latest cleats, jerseys, and equipment from the brands and clubs you love.
+              </p>
+              <ul>
+                <li>Vast selection of soccer cleats for firm ground, turf, and indoor surfaces.</li>
+                <li>Official jerseys and apparel from European clubs, national teams, and more.</li>
+              </ul>
+            </div>
 
+            <div class="why-graphic-wrap">
+              <div class="why-graphic">
+                <div class="field-line"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="why-graphic-text">
+                  <strong>Designed for football culture.</strong><br />
+                  A blend of street, stadium, and Portuguese matchday energy, in one local shop.
+                </div>
+              </div>
+            </div>
 
-  <!-- Hours & Location -->
-<section id="hours">
-  <div class="container">
-    <div class="card">
-      <div class="hours-grid">
-        <div>
-          <h2>Hours &amp; Location</h2>
-          <p class="section-intro">
-            You’ll find us on Ferry Street in Newark’s Ironbound, minutes from downtown and major
-            highways, with easy access from surrounding towns.
-          </p>
-          <div class="hours-list">
-            <div><span>Monday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Tuesday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Wednesday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Thursday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Friday</span><span>10:00 am – 7:00 pm</span></div>
-            <div><span>Saturday</span><span>9:00 am – 7:00 pm</span></div>
-            <div><span>Sunday</span><span>10:00 am – 5:00 pm</span></div>
           </div>
         </div>
-<div class="map-placeholder">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.926996317427!2d-74.1582174235953!3d40.728592137897455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2537f6b9e9c1f%3A0x5ed56e6f3e1e6f34!2s101%20Ferry%20St%2C%20Newark%2C%20NJ%2007105!5e0!3m2!1sen!2sus!4v1708819200000!5m2!1sen!2sus"
-    width="100%"
-    height="260"
-    style="border:0; border-radius:10px;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Products -->
+  <section id="products">
+    <div class="container">
+      <div class="tilt-shell">
+        <div class="card">
+          <h2>What You’ll Find in Store</h2>
+          <p class="section-intro">
+            We carry options for youth and adults, beginners and competitive players.
+          </p>
+          <div class="card-grid-4">
+
+            <div class="tilt-shell product-tilt">
+              <div class="card product-card">
+                <div class="slider" data-slider="cleats">
+                  <button class="slider-arrow left" data-dir="prev">&#10094;</button>
+                  <button class="slider-arrow right" data-dir="next">&#10095;</button>
+
+                  <img src="Pegasus-Sporting-Goods cleats 3.jpg" alt="Cleats display at Pegasus" class="active">
+                  <img src="Pegasus-Sporting-Goods Cleats.jpg" alt="Cleats display at Pegasus">
+                  <img src="Pegasus-Sporting-Goods cleats 2.jpg" alt="Cleats display at Pegasus">
+                </div>
+
+                <h3>Cleats &amp; Footwear</h3>
+                <p>
+                  Youth and adult cleats in ground, turf, and indoor options from brands like Nike,
+                  adidas, Puma, and more.
+                </p>
+              </div>
+            </div>
+
+            <div class="tilt-shell product-tilt">
+              <div class="card product-card">
+                <div class="slider" data-slider="jerseys">
+                  <button class="slider-arrow left" data-dir="prev">&#10094;</button>
+                  <button class="slider-arrow right" data-dir="next">&#10095;</button>
+
+                  <img src="Jerseys.jpg" alt="Jerseys at Pegasus" class="active">
+                  <img src="Jersey 3.jpg" alt="Jerseys at Pegasus">
+                </div>
+
+                <h3>Portuguese &amp; European Jerseys</h3>
+                <p>
+                  Show your colors with jerseys from Benfica, Sporting, Porto and other top European
+                  clubs, plus national team gear for match day.
+                </p>
+              </div>
+            </div>
+
+            <div class="tilt-shell product-tilt">
+              <div class="card product-card">
+                <div class="slider" data-slider="balls">
+                  <button class="slider-arrow left" data-dir="prev">&#10094;</button>
+                  <button class="slider-arrow right" data-dir="next">&#10095;</button>
+
+                  <img src="inside angle 2.jpg" alt="Equipment at Pegasus" class="active">
+                  <img src="Jerseys 2.jpg" alt="Equipment at Pegasus">
+                  <img src="Inside.jpg" alt="Equipment at Pegasus">
+                </div>
+
+                <h3>Balls &amp; Equipment</h3>
+                <p>
+                  Match and training balls, shin guards, goalie gloves, socks, bags, and other
+                  essentials for practice and game day.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="tilt-shell">
+        <div class="card">
+          <h2>In‑Store Services</h2>
+          <div class="card-grid-3">
+            <div class="tilt-shell">
+              <div class="card">
+                <h3>Cleat Fitting &amp; Gear Advice</h3>
+                <p>
+                  Tell us how and where you play—our staff will help you choose the right cleat type,
+                  fit, and gear so you’re comfortable and confident on the field.
+                </p>
+              </div>
+            </div>
+            <div class="tilt-shell">
+              <div class="card">
+                <h3>Team Uniform &amp; Kit Ordering</h3>
+                <p>
+                  We work with teams to design and order uniforms, warm‑ups, and fan gear.
+                  Bring your logo or idea and we’ll help you put together a complete kit.
+                </p>
+              </div>
+            </div>
+            <div class="tilt-shell">
+              <div class="card">
+                <h3>Special Orders</h3>
+                <p>
+                  Looking for a specific jersey, size, or product you don’t see on the wall?
+                  Ask us—we can often special order items directly from our partners.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hours & Location -->
+  <section id="hours">
+    <div class="container">
+      <div class="tilt-shell">
+        <div class="card">
+          <div class="hours-grid">
+            <div>
+              <h2>Hours &amp; Location</h2>
+              <p class="section-intro">
+                You’ll find us on Ferry Street in Newark’s Ironbound, minutes from downtown and major
+                highways, with easy access from surrounding towns.
+              </p>
+              <div class="hours-list">
+                <div><span>Monday</span><span>10:00 am – 7:00 pm</span></div>
+                <div><span>Tuesday</span><span>10:00 am – 7:00 pm</span></div>
+                <div><span>Wednesday</span><span>10:00 am – 7:00 pm</span></div>
+                <div><span>Thursday</span><span>10:00 am – 7:00 pm</span></div>
+                <div><span>Friday</span><span>10:00 am – 7:00 pm</span></div>
+                <div><span>Saturday</span><span>9:00 am – 7:00 pm</span></div>
+                <div><span>Sunday</span><span>10:00 am – 5:00 pm</span></div>
+              </div>
+            </div>
+            <div class="map-placeholder">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.926996317427!2d-74.1582174235953!3d40.728592137897455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2537f6b9e9c1f%3A0x5ed56e6f3e1e6f34!2s101%20Ferry%20St%2C%20Newark%2C%20NJ%2007105!5e0!3m2!1sen!2sus!4v1708819200000!5m2!1sen!2sus"
+                width="100%"
+                height="260"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Contact -->
-<section id="contact">
-  <div class="container">
-    <div class="card">
-      <div class="contact-layout">
-        <div>
-          <h2>Contact Pegasus</h2>
-          <p class="section-intro">
-            Have a question about sizes, availability, or team orders?
-            Call us or send a message and our team will get back to you as soon as possible.
-          </p>
-          <p><strong>Phone:</strong> (973) 589-3510</p>
-          <p><strong>Address:</strong> 101 Ferry St, Newark, NJ 07105</p>
-        </div>
+  <section id="contact">
+    <div class="container">
+      <div class="tilt-shell">
         <div class="card">
-          <form>
+          <div class="contact-layout">
             <div>
-              <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" />
+              <h2>Contact Pegasus</h2>
+              <p class="section-intro">
+                Have a question about sizes, availability, or team orders?
+                Call us or send a message and our team will get back to you as soon as possible.
+              </p>
+              <p><strong>Phone:</strong> (973) 589-3510</p>
+              <p><strong>Address:</strong> 101 Ferry St, Newark, NJ 07105</p>
             </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" />
+            <div class="tilt-shell">
+              <div class="card">
+                <form>
+                  <div>
+                    <label for="name">Name</label>
+                    <input id="name" type="text" placeholder="Your name" />
+                  </div>
+                  <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="you@example.com" />
+                  </div>
+                  <div>
+                    <label for="phone">Phone</label>
+                    <input id="phone" type="tel" placeholder="(   )    -" />
+                  </div>
+                  <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="What are you looking for?"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+              </div>
             </div>
-            <div>
-              <label for="phone">Phone</label>
-              <input id="phone" type="tel" placeholder="(   )    -" />
-            </div>
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="What are you looking for?"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
 <footer>
   © Pegasus Sporting Goods – Newark, NJ. Website demo created by Tyler Philistin.
 </footer>
+
 <script>
+  // Image sliders
   document.addEventListener("DOMContentLoaded", function () {
     const sliders = document.querySelectorAll(".slider");
 
@@ -622,7 +904,6 @@ header {
         images[current].classList.add("active");
       }
 
-      // ensure first image is active
       images[0].classList.add("active");
 
       const leftBtn = slider.querySelector('.slider-arrow.left');
@@ -641,6 +922,67 @@ header {
       }
     });
   });
+
+  // 3D tilt for all tilt-shell cards, minimal wobble on products
+  (function () {
+// Only tilt non-product sections (no wobble for product cards)
+const shells = document.querySelectorAll(".tilt-shell:not(.product-tilt)");
+
+shells.forEach(shell => {
+  const card = shell.firstElementChild;
+  if (!card) return;
+
+  const dampen = 14; // comfortable tilt for hero/other sections
+
+
+      function handleMove(event) {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+        card.style.transform =
+          "rotateX(" + (-y * dampen) + "deg) rotateY(" + (x * dampen) + "deg) translate3d(0, 0, 0)";
+      }
+
+      function reset() {
+        card.style.transform =
+          "rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)";
+      }
+
+      shell.addEventListener("mousemove", handleMove);
+      shell.addEventListener("mouseleave", reset);
+      shell.addEventListener("mouseenter", function () {
+        card.style.transition = "transform 160ms ease-out, box-shadow 160ms ease-out";
+        setTimeout(() => {
+          card.style.transition =
+            "transform 420ms cubic-bezier(0.19, 1, 0.22, 1), box-shadow 420ms cubic-bezier(0.19, 1, 0.22, 1)";
+        }, 160);
+      });
+    });
+  })();
+
+  // Scroll reveal for all main cards
+  (function () {
+    const revealCards = document.querySelectorAll(".card, .hero-card, .info-card");
+    if (!("IntersectionObserver" in window) || !revealCards.length) {
+      revealCards.forEach(c => c.classList.add("visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16 }
+    );
+
+    revealCards.forEach(card => observer.observe(card));
+  })();
 </script>
 </body>
 </html>
