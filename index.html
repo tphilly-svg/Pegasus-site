@@ -92,19 +92,13 @@ body::before {
 header::before {
   content: "";
   position: absolute;
-  inset: -40px;
+  inset: 0;
   background:
-    radial-gradient(circle at 12% 0%, rgba(0, 140, 69, 0.55), transparent 60%),
-    radial-gradient(circle at 82% 15%, rgba(200, 16, 46, 0.85), transparent 60%),
-    url("azul 4.jpg");
-  background-size: 260px, 260px, 200px;
-  background-blend-mode: screen, screen, normal;
-  opacity: 0.9;          /* a bit stronger than before, but tiles still visible */
+    radial-gradient(ellipse 70% 50% at 0% 30%, rgba(0, 110, 55, 0.68) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 100% 70%, rgba(180, 10, 30, 0.68) 0%, transparent 70%);
+  pointer-events: none;
   z-index: -1;
-  transform: scale(1.05);
 }
-
-
 
     .hero-layout {
       display: grid;
