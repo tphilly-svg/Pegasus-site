@@ -275,18 +275,28 @@ main section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 15% 10%, rgba(0, 140, 69, 0.38), transparent 60%),
-    radial-gradient(circle at 85% 90%, rgba(200, 16, 46, 0.46), transparent 60%),
-    url("azul3.png");
-  background-size: 260px, 260px, 160px;
-  background-blend-mode: screen, screen, normal;
-  opacity: 0.9;  /* stronger overall tint on the bottom half */
+  background-image: url("azul3.png");
+  background-size: 160px;
+  background-repeat: repeat;
+  opacity: 1;
   pointer-events: none;
   z-index: -1;
 }
-
-
+main section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(0, 140, 69, 0.65), transparent 60%),
+    radial-gradient(circle at 85% 90%, rgba(200, 16, 46, 0.75), transparent 60%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+    main section .container {
+  position: relative;
+  z-index: 1;
+}
 
 
     .section-intro {
