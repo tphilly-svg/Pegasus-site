@@ -92,13 +92,15 @@ body::before {
 header::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 0% 30%, rgba(0, 110, 55, 0.68) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 50% at 100% 70%, rgba(180, 10, 30, 0.68) 0%, transparent 70%);
-  pointer-events: none;
+  inset: -40px;
+  background-image: url("azul 4.jpg");
+  background-size: 200px;
+  background-repeat: repeat;
+  opacity: 0.9;
   z-index: -1;
+  transform: scale(1.05);
 }
+
 
     .hero-layout {
       display: grid;
