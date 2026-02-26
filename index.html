@@ -41,16 +41,17 @@ body::before {
   position: fixed;
   inset: -40%;
   background:
-    radial-gradient(circle at 15% 0%, rgba(0, 140, 69, 0.45), transparent 55%),
-    radial-gradient(circle at 75% 10%, rgba(200, 16, 46, 0.85), transparent 55%),
-    radial-gradient(circle at 20% 90%, rgba(242, 193, 46, 0.45), transparent 55%);
+    radial-gradient(circle at 15% 0%, rgba(0, 140, 69, 0.7), transparent 50%),
+    radial-gradient(circle at 75% 10%, rgba(200, 16, 46, 1), transparent 50%),
+    radial-gradient(circle at 20% 90%, rgba(242, 193, 46, 0.5), transparent 50%);
   mix-blend-mode: screen;
-  opacity: 0.7; /* stronger overall tint */
+  opacity: 0.85;
   filter: blur(4px);
   z-index: -2;
   animation: bg-orbit 32s infinite alternate ease-in-out;
   pointer-events: none;
 }
+
 
 
     @keyframes bg-orbit {
@@ -278,21 +279,11 @@ main section::before {
   background-image: url("azul3.png");
   background-size: 160px;
   background-repeat: repeat;
-  opacity: 1;
+  opacity: 0.55;
   pointer-events: none;
   z-index: -1;
 }
-main section::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 10%, rgba(0, 140, 69, 0.65), transparent 60%),
-    radial-gradient(circle at 85% 90%, rgba(200, 16, 46, 0.75), transparent 60%);
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 0;
-}
+
     main section .container {
   position: relative;
   z-index: 1;
