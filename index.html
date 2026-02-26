@@ -36,21 +36,22 @@ body {
     }
 
     /* Flag-inspired animated background + noise (as in first version) */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(0, 140, 69, 0.6), transparent 55%),
-        radial-gradient(circle at 80% 20%, rgba(200, 16, 46, 0.5), transparent 55%),
-        radial-gradient(circle at 20% 90%, rgba(242, 193, 46, 0.5), transparent 55%);
-      mix-blend-mode: screen;
-      opacity: 0.55;
-      filter: blur(4px);
-      z-index: -2;
-      animation: bg-orbit 32s infinite alternate ease-in-out;
-      pointer-events: none;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(0, 140, 69, 0.45), transparent 55%),
+    radial-gradient(circle at 75% 10%, rgba(200, 16, 46, 0.85), transparent 55%),
+    radial-gradient(circle at 20% 90%, rgba(242, 193, 46, 0.45), transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0.7; /* stronger overall tint */
+  filter: blur(4px);
+  z-index: -2;
+  animation: bg-orbit 32s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
 
     @keyframes bg-orbit {
       0% { transform: translate3d(0, 0, 0) scale(1); }
@@ -607,11 +608,11 @@ body {
             </div>
           </div>
 
-          <div class="hero-photo-box">
-            <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Front of Pegasus Sporting Goods in Newark" />
-            <div class="hero-photo-overlay"></div>
-            <div class="hero-photo-tag">Storefront · Pegasus Sporting Goods</div>
-          </div>
+<div class="hero-photo-box">
+  <img src="Pegasus-Sporting-Goods front.jpg copy.jpg" alt="Front of Pegasus Sporting Goods in Newark" />
+  <div class="hero-photo-overlay"></div>
+</div>
+
         </div>
       </div>
     </div>
