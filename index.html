@@ -276,15 +276,16 @@ main section::before {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 15% 10%, rgba(0, 140, 69, 0.22), transparent 60%),
-    radial-gradient(circle at 85% 90%, rgba(200, 16, 46, 0.26), transparent 60%),
+    radial-gradient(circle at 15% 10%, rgba(0, 140, 69, 0.38), transparent 60%),
+    radial-gradient(circle at 85% 90%, rgba(200, 16, 46, 0.46), transparent 60%),
     url("azul3.png");
   background-size: 260px, 260px, 160px;
-  background-blend-mode: screen, screen, normal; /* color over pattern, pattern still clear */
-  opacity: 0.7;  /* slightly more transparent but clearly tinted */
+  background-blend-mode: screen, screen, normal;
+  opacity: 0.9;  /* stronger overall tint on the bottom half */
   pointer-events: none;
   z-index: -1;
 }
+
 
 
 
