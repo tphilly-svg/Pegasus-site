@@ -11,6 +11,15 @@
 
   <!-- Modern font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EC5LXQKM5Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EC5LXQKM5Q');
+</script>
 
 
   <style>
@@ -612,15 +621,6 @@ input, textarea {
 
     textarea { min-height: 100px; resize: vertical; }
 
-    footer {
-      padding: 16px;
-      font-size: 0.8rem;
-      text-align: center;
-      background: rgba(15, 23, 42, 0.96);
-      color: #9ca3af;
-      border-top: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
     @media (max-width: 768px) {
       .hero-layout,
       .highlight-grid,
@@ -637,6 +637,27 @@ input, textarea {
   </style>
 </head>
 <body>
+<nav style="position:sticky; top:0; z-index:100; 
+background:rgba(15,23,42,0.97); 
+padding:14px 24px; 
+display:flex; 
+gap:28px; 
+justify-content:center; 
+border-bottom:1px solid rgba(148,163,184,0.15);
+backdrop-filter:blur(10px);">
+  <a href="#products" style="color:#f9fafb; font-family:'Jost',sans-serif;
+  font-size:0.85rem; letter-spacing:0.12em; 
+  text-transform:uppercase; text-decoration:none;">Shop</a>
+  <a href="#highlights" style="color:#f9fafb; font-family:'Jost',sans-serif;
+  font-size:0.85rem; letter-spacing:0.12em; 
+  text-transform:uppercase; text-decoration:none;">About</a>
+  <a href="#hours" style="color:#f9fafb; font-family:'Jost',sans-serif;
+  font-size:0.85rem; letter-spacing:0.12em; 
+  text-transform:uppercase; text-decoration:none;">Hours</a>
+  <a href="#contact" style="color:#f9fafb; font-family:'Jost',sans-serif;
+  font-size:0.85rem; letter-spacing:0.12em; 
+  text-transform:uppercase; text-decoration:none;">Contact</a>
+</nav>
 
 <header>
   <div class="container">
@@ -753,8 +774,8 @@ input, textarea {
       </div>
     </div>
   </section>
-  <!-- Highlights -->
-  <section>
+<!-- Highlights -->
+  <section id="highlights">
     <div class="container">
       <div class="tilt-shell">
         <div class="card">
@@ -771,7 +792,7 @@ input, textarea {
 <div class="why-graphic-wrap">
   <img src="image (1).png"
        alt="Pegasus Sporting Goods Logo"
-       style="width:100%; max-width:700px; display:block; margin:0 auto;" />
+       style="width:100%; max-width:320px; display:block; margin:0 auto;" />
 </div>
 
           </div>
@@ -866,10 +887,64 @@ input, textarea {
   </section>
 
 </main>
+<a href="https://wa.me/18627547967" target="_blank"
+   style="position:fixed; 
+   bottom:24px; 
+   right:24px; 
+   z-index:999;
+   background:#25D366; 
+   color:#fff; 
+   border-radius:999px;
+   padding:12px 20px; 
+   font-family:'Jost',sans-serif;
+   font-weight:700; 
+   font-size:0.9rem;
+   box-shadow:0 8px 24px rgba(0,0,0,0.5); 
+   text-decoration:none;
+   display:inline-flex;
+   align-items:center;
+   gap:8px;">
+  💬 WhatsApp Us
+</a>
 
-<footer>
-  © Pegasus Sporting Goods – Newark, NJ. Website demo created by Tyler Philistin.
+<footer style="padding:20px 16px; 
+text-align:center; 
+background:rgba(15,23,42,0.96); 
+color:#9ca3af; 
+font-size:0.8rem;
+border-top:1px solid rgba(148,163,184,0.2);">
+
+  <div style="margin-bottom:12px; display:flex; 
+  justify-content:center; gap:20px;">
+
+    <a href="https://www.instagram.com/pegasussportinggoods/?hl=en" 
+       target="_blank"
+       style="color:#f9fafb; font-size:0.85rem; 
+       text-decoration:none; letter-spacing:0.08em;">
+      Instagram
+    </a>
+
+    <a href="https://www.facebook.com/PegasusSportingGoods/" 
+       target="_blank"
+       style="color:#f9fafb; font-size:0.85rem; 
+       text-decoration:none; letter-spacing:0.08em;">
+      Facebook
+    </a>
+
+    <a href="https://wa.me/18627547967" 
+       target="_blank"
+       style="color:#f9fafb; font-size:0.85rem; 
+       text-decoration:none; letter-spacing:0.08em;">
+      WhatsApp
+    </a>
+
+  </div>
+
+  © Pegasus Sporting Goods – Newark, NJ. 
+  Website created by T.J.P.
+
 </footer>
+
 
 <script>
   // Image sliders
